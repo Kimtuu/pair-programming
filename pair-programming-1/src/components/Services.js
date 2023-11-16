@@ -1,20 +1,22 @@
 import { services } from "../data";
-import Service from "./Service";
 import Title from "./Title";
+import { useState } from "react";
+import Service from "./Service";
 
 function Services() {
-	return (
-		<div>
-			<section className="section services" id="services">
-				<Title title="our" span="services" />
-				<div className="section-center services-center">
-					{services.map((service) => (
-						<Service key={service.id} {...service} />
-					))}
-				</div>
-			</section>
-		</div>
-	);
+  const [serviceData] = useState(services);
+  return (
+    <div>
+      <section className="section services" id="services">
+        <Title title="our" span="services" />
+        <div className="section-center services-center">
+          {serviceData.map((service) => (
+            <Service key={service.id} {...service} />
+          ))}
+        </div>
+      </section>
+    </div>
+  );
 }
 
 export default Services;
