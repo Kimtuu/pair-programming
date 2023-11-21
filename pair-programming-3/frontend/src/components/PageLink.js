@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function PageLink({ id, href, text, childClass }) {
+function PageLink({ href, text, childClass }) {
   console.log(href);
   return (
     <li>

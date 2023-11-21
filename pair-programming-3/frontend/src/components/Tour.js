@@ -1,5 +1,5 @@
 function Tour({
-  id,
+  _id,
   image,
   date,
   info,
@@ -10,12 +10,12 @@ function Tour({
   handleDelete,
 }) {
   const handleDel = () => {
-    handleDelete(id); // Pass the item's ID to the parent component for deletion
+    handleDelete(_id); // Pass the item's ID to the parent component for deletion
   };
   return (
     <article className="tour-card">
       <div className="tour-img-container">
-        <img src={image} className="tour-img" alt="Tibet Adventure" />
+        <img src={image} className="tour-img" alt={title} />
         <p className="tour-date">{date}</p>
       </div>
       <div className="tour-info">

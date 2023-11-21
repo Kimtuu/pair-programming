@@ -70,12 +70,12 @@ const patchTour = async (req, res) => {
 // Delete tour by ID
 const deleteTour = async (req, res) => {
   try {
-    const tour = await Tour.findById(req.params.id);
+    const tour = await Tour.findById(req.params._id);
     if (tour) {
       await tour.remove();
       res.json({ msg: "tour deleted", tour });
     } else {
-      res.status(404).json({ msg: `No tour with the id of ${req.params.id}` });
+      res.status(404).json({ msg: `No tour with the id of ${req.params._id}` });
     }
   } catch (error) {
     res.status(400).json({ error: error.message });
