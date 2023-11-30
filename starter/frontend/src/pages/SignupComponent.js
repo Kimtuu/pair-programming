@@ -4,9 +4,12 @@ import useField from "../hooks/useSignup";
 const SignupComponent = ({ setIsAuthenticated }) => {
   const emailInput = useField("text");
   const passwordInput = useField("password");
+  const passwordInputVerify = useField("password");
   const navigate = useNavigate();
 
   const handleSignup = async () => {
+    if (!passwordInput.value === passwordInputVerify.value) {
+      return console.log("Passwords do not match");}
     try {
       const response = await fetch("/api/user/signup", {
         method: "POST",
@@ -44,6 +47,11 @@ const SignupComponent = ({ setIsAuthenticated }) => {
       <label>
         Password:
         <input {...passwordInput} />
+      </label>
+      <br />
+      <label>
+        Verify Password:
+        <input {...passwordInputVerify} />
       </label>
       <br />
       <button onClick={handleSignup}>Sign Up</button>

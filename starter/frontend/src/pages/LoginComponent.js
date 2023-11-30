@@ -1,9 +1,9 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useField from "../hooks/useSignup";
 
 const LoginComponent = ({ setIsAuthenticated }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailInput = useField("text");
+  const passwordInput = useField("password");
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -13,7 +13,7 @@ const LoginComponent = ({ setIsAuthenticated }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: emailInput.value, password: passwordInput.value }),
       });
 
       if (response.ok) {
@@ -35,20 +35,12 @@ const LoginComponent = ({ setIsAuthenticated }) => {
       <h2>Login</h2>
       <label>
         Username:
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <input {...emailInput}/>
       </label>
       <br />
       <label>
         Password:
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <input {...passwordInput} />
       </label>
       <br />
       <button onClick={handleLogin}>Log In</button>
